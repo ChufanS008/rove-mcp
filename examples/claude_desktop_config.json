@@ -6,7 +6,7 @@
         "url": "https://rove-ski.com/mcp"
       },
       "headers": {
-        "Authorization": "Bearer YOUR_ROVE_API_KEY"
+        "Authorization": "Bearer rove_YOUR_KEY"
       }
     }
   }

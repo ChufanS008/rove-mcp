@@ -1,5 +1,8 @@
-# Codex CLI / Codex app / IDE extension share one MCP config.
-# Equivalent CLI: codex mcp add rove --url "https://rove-ski.com/mcp?key=YOUR_ROVE_API_KEY"
+# Headless personal API key example. Requires a free ROVE account.
+# Create a free personal API key at https://rove-ski.com/en/ai.
+# Replace rove_YOUR_KEY with your key; never publish credentials.
+# For OAuth-capable clients, use the bare endpoint and complete sign-in.
+# Equivalent CLI: codex mcp add rove --url "https://rove-ski.com/mcp?key=rove_YOUR_KEY"
 
 [mcp_servers.rove]
-url = "https://rove-ski.com/mcp?key=YOUR_ROVE_API_KEY"
+url = "https://rove-ski.com/mcp?key=rove_YOUR_KEY"

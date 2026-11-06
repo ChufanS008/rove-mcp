@@ -2,13 +2,22 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.rove-ski/snow-forecast",
   "title": "ROVE Snow Forecast",
-  "description": "Free, keyless snow forecasts for 667 ski resorts. Twelve read-only tools; optional OAuth 2.1.",
-  "version": "1.0.3",
+  "description": "14 free read-only ski tools. Free ROVE account required; OAuth 2.1 or personal API key.",
+  "version": "1.0.4",
   "websiteUrl": "https://rove-ski.com/en/ai",
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://rove-ski.com/mcp"
+      "url": "https://rove-ski.com/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "For personal API key access, get a free key at https://rove-ski.com/en/ai. Alternatively, use OAuth 2.1 sign-in with PKCE and Dynamic Client Registration. Authentication is required; this header input is optional for OAuth clients.",
+          "isRequired": false,
+          "isSecret": true,
+          "placeholder": "Bearer rove_YOUR_KEY"
+        }
+      ]
     }
   ],
   "repository": {

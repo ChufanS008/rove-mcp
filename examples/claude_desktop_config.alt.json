@@ -7,7 +7,7 @@
         "mcp-remote",
         "https://rove-ski.com/mcp",
         "--header",
-        "Authorization: Bearer YOUR_ROVE_API_KEY"
+        "Authorization: Bearer rove_YOUR_KEY"
       ]
     }
   }

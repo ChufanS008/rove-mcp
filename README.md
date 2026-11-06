@@ -2,10 +2,10 @@
 
 Free, read-only ski intelligence for 667 ski resorts in the US, Canada, and Japan. Built by [Chufan Shi](https://www.linkedin.com/in/scf001008), founder of [ROVE](https://rove-ski.com/en).
 
-- **Version:** 1.0.3
+- **Version:** 1.0.4
 - **Endpoint:** `https://rove-ski.com/mcp` (Streamable HTTP)
-- **Instant access:** No API key or sign-in. Anonymous read-only requests: 120 requests/min per IP.
-- **Optional higher quota:** OAuth 2.1 with PKCE and Dynamic Client Registration, or a free API key, for 600 requests/min.
+- **Account required:** A free ROVE account is required. All 14 read-only tools are free.
+- **Authentication:** One-click OAuth 2.1 sign-in with PKCE and Dynamic Client Registration, or a free personal API key. Authenticated access: 600 requests/min.
 - **Official MCP Registry:** `com.rove-ski/snow-forecast`
 - **Setup:** [rove-ski.com/en/ai](https://rove-ski.com/en/ai)
 - **Claude Directory:** [ROVE Snow Forecast](https://claude.ai/directory/rove-snow-forecast)
@@ -35,13 +35,15 @@ Legacy tool names remain callable but are omitted from discovery: `forecast_conf
 
 ## Quick install
 
-Start with the bare endpoint. No account or API key is required.
+Create a free ROVE account, then connect `https://rove-ski.com/mcp` in an OAuth-capable Claude, Claude Code, Cursor, Codex, or VS Code client. Choose one-click OAuth 2.1 sign-in and complete browser authorization where supported. ROVE supports PKCE and Dynamic Client Registration. Client account requirements and OAuth availability depend on the client and version.
 
 ### Claude Code
 
 ```sh
 claude mcp add --transport http rove https://rove-ski.com/mcp -s user
 ```
+
+Run `/mcp` in Claude Code, select ROVE, and complete the browser authorization flow where supported.
 
 ### Codex
 
@@ -67,13 +69,39 @@ Merge this server into your existing MCP configuration without replacing other s
 }
 ```
 
-### Claude, ChatGPT, and other remote MCP clients
+### Claude and other remote MCP clients
 
-Use `https://rove-ski.com/mcp` with authentication set to none when supported. The [Claude Directory listing](https://claude.ai/directory/rove-snow-forecast) is also available. If a client requires authentication, select optional OAuth 2.1. Client account requirements and availability are controlled by that client.
+Add `https://rove-ski.com/mcp` as a remote connector and choose OAuth sign-in. Complete browser authorization where supported. The [Claude Directory listing](https://claude.ai/directory/rove-snow-forecast) is also available.
 
-### Optional authenticated access
+### Headless and URL-only clients
 
-For 600 requests/min, use OAuth 2.1 when supported or get a free API key at [rove-ski.com/en/ai](https://rove-ski.com/en/ai). Supply `Authorization: Bearer YOUR_ROVE_API_KEY`; a `?key=` URL is also supported, but a header keeps keys out of URLs and URL logs. Never publish your credentials.
+Sign in to your free ROVE account and create a free personal API key at [rove-ski.com/en/ai](https://rove-ski.com/en/ai). Send it as an HTTP header:
+
+```http
+Authorization: Bearer rove_YOUR_KEY
+```
+
+For clients that accept only a URL, use:
+
+```text
+https://rove-ski.com/mcp?key=rove_YOUR_KEY
+```
+
+Replace `rove_YOUR_KEY` with your personal key. Prefer the header when supported to keep the key out of URLs and URL logs. Never publish your credentials.
+
+### Example configurations
+
+Merge the relevant example into your existing configuration without replacing other servers:
+
+- [Cursor](examples/cursor_mcp.json): OAuth endpoint; finish sign-in in the client.
+- [Codex](examples/codex_config.toml): personal API key URL for headless use. The quick-install command above uses OAuth in clients that support it.
+- [Claude Desktop header configuration](examples/claude_desktop_config.json): personal API key for clients supporting this transport format.
+- [Claude Desktop via mcp-remote](examples/claude_desktop_config.alt.json): personal API key header through a local bridge; requires Node.js and `npx`.
+- [Gemini](examples/gemini_settings.json): personal API key URL.
+
+### Authentication and rate limits
+
+All 14 read-only tools are free with a free ROVE account. Authenticated requests have a limit of 600 requests/min, whether using OAuth or a personal API key. Unauthenticated MCP transport requests return HTTP `401` with a `WWW-Authenticate` discovery challenge. OAuth endpoints and Glama metadata endpoints remain public.
 
 ## Data and provenance
 

@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "rove": {
-      "httpUrl": "https://rove-ski.com/mcp?key=YOUR_ROVE_API_KEY",
+      "httpUrl": "https://rove-ski.com/mcp?key=rove_YOUR_KEY",
       "timeout": 30000
     }
   }
