@@ -3,7 +3,7 @@
   "name": "com.rove-ski/snow-forecast",
   "title": "ROVE Snow Forecast",
   "description": "Free, keyless snow forecasts for 667 ski resorts. Twelve read-only tools; optional OAuth 2.1.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "websiteUrl": "https://rove-ski.com/en/ai",
   "remotes": [
     {

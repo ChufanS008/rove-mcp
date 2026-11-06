@@ -2,7 +2,7 @@
 
 Free, read-only ski intelligence for 667 ski resorts in the US, Canada, and Japan. Built by [Chufan Shi](https://www.linkedin.com/in/scf001008), founder of [ROVE](https://rove-ski.com/en).
 
-- **Version:** 1.0.2
+- **Version:** 1.0.3
 - **Endpoint:** `https://rove-ski.com/mcp` (Streamable HTTP)
 - **Instant access:** No API key or sign-in. Anonymous read-only requests: 120 requests/min per IP.
 - **Optional higher quota:** OAuth 2.1 with PKCE and Dynamic Client Registration, or a free API key, for 600 requests/min.
@@ -10,13 +10,13 @@ Free, read-only ski intelligence for 667 ski resorts in the US, Canada, and Japa
 - **Setup:** [rove-ski.com/en/ai](https://rove-ski.com/en/ai)
 - **Claude Directory:** [ROVE Snow Forecast](https://claude.ai/directory/rove-snow-forecast)
 
-## The 12 advertised tools
+## The 14 advertised tools
 
 | Tool | Purpose |
 |---|---|
 | `search_resorts` | Structured catalog search by name, region, pass, or country. |
 | `get_forecast` | Daily and available 3-hourly snowfall, rain, temperature, and wind forecasts up to 15 days. |
-| `get_conditions` | Current snow depth, recent snowfall, and available operator lift or trail status. |
+| `get_conditions` | Current snow depth (including JMA AMeDAS station snow depth in Japan), recent snowfall, and available operator lift or trail status. |
 | `get_opening_dates` | Available opening dates, closing targets, and season operating status. |
 | `find_powder` | Rank resorts over the next 1 to 15 days starting today. |
 | `get_accuracy` | Eligible station-verified historical accuracy, or the 435-station backtest methodology. |
@@ -26,6 +26,8 @@ Free, read-only ski intelligence for 667 ski resorts in the US, Canada, and Japa
 | `compare_resorts` | Compare 2 to 5 named resorts across snowfall, snowpack, lift status, pass, and eligible accuracy. |
 | `search` | OpenAI-compatible keyword discovery across resorts and regional or pass hubs. |
 | `fetch` | Read an internal ROVE document by canonical identifier or ROVE URL. |
+| `get_avalanche_danger` | Official US backcountry avalanche danger rating and forecast summary via avalanche.org. |
+| `get_road_conditions` | Official Caltrans CWWP2 highway chain-control levels (R-0 to R-3 / Closed) for California ski corridors. |
 
 Pass filters include `epic`, `ikon`, `indy`, `mountain-collective`, `power-pass`, and `independent`. Membership reflects the published catalog, not a guarantee of ticket entitlement. Check pass restrictions with the operator.
 
