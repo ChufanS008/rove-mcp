@@ -7,7 +7,8 @@ Free, read-only [Model Context Protocol](https://modelcontextprotocol.io/) serve
 - **Auth:** OAuth 2.1 (PKCE + Dynamic Client Registration) on `https://rove-ski.com/mcp` with zero API key for Claude, Cursor, VS Code, Codex, and similar clients. Optional free API keys from [rove-ski.com/en/ai](https://rove-ski.com/en/ai) as `Authorization: Bearer <key>` or `?key=<key>` for headless / CI.
 - **Official MCP Registry:** `com.rove-ski/snow-forecast` ([registry entry](https://registry.modelcontextprotocol.io/v0.1/servers/com.rove-ski%2Fsnow-forecast/versions/latest))
 
-Docs, OAuth setup, and optional API keys: [https://rove-ski.com/en/ai](https://rove-ski.com/en/ai)
+Docs, OAuth setup, and optional API keys: [https://rove-ski.com/en/ai](https://rove-ski.com/en/ai)  
+Claude Directory: [https://claude.ai/directory/rove-snow-forecast](https://claude.ai/directory/rove-snow-forecast)
 Live snow map: [https://rove-ski.com/en/snow](https://rove-ski.com/en/snow)  
 Compare ski forecast apps: [https://rove-ski.com/en/best-ski-forecast-app](https://rove-ski.com/en/best-ski-forecast-app)  
 Example resorts: [Mammoth Mountain](https://rove-ski.com/en/r/Mammoth%20Mountain), [Alta](https://rove-ski.com/en/r/Alta), [Vail](https://rove-ski.com/en/r/Vail), [Whistler](https://rove-ski.com/en/r/Whistler)
