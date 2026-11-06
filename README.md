@@ -4,10 +4,10 @@ Free, read-only [Model Context Protocol](https://modelcontextprotocol.io/) serve
 
 - **Endpoint:** `https://rove-ski.com/mcp` (Streamable HTTP)
 - **Coverage:** 667 ski resorts (644 in North America, 23 in Japan Beta). 15-day snowfall forecasts for all resorts; live snow depth, lifts, trails, roads, opening dates, resort news, and station-verified accuracy records for North America.
-- **Auth:** Free API key from [rove-ski.com/en/ai](https://rove-ski.com/en/ai) passed as `Authorization: Bearer <key>` or `?key=<key>` (OAuth 2.0 dynamic client registration also supported for web MCP clients)
+- **Auth:** OAuth 2.1 (PKCE + Dynamic Client Registration) on `https://rove-ski.com/mcp` with zero API key for Claude, Cursor, VS Code, Codex, and similar clients. Optional free API keys from [rove-ski.com/en/ai](https://rove-ski.com/en/ai) as `Authorization: Bearer <key>` or `?key=<key>` for headless / CI.
 - **Official MCP Registry:** `com.rove-ski/snow-forecast` ([registry entry](https://registry.modelcontextprotocol.io/v0.1/servers/com.rove-ski%2Fsnow-forecast/versions/latest))
 
-Docs and free API key: [https://rove-ski.com/en/ai](https://rove-ski.com/en/ai)  
+Docs, OAuth setup, and optional API keys: [https://rove-ski.com/en/ai](https://rove-ski.com/en/ai)
 Live snow map: [https://rove-ski.com/en/snow](https://rove-ski.com/en/snow)  
 Compare ski forecast apps: [https://rove-ski.com/en/best-ski-forecast-app](https://rove-ski.com/en/best-ski-forecast-app)  
 Example resorts: [Mammoth Mountain](https://rove-ski.com/en/r/Mammoth%20Mountain), [Alta](https://rove-ski.com/en/r/Alta), [Vail](https://rove-ski.com/en/r/Vail), [Whistler](https://rove-ski.com/en/r/Whistler)
@@ -34,24 +34,38 @@ ROVE blends multiple weather models at mid-mountain elevation. For North America
 
 ## Quick install
 
+OAuth 2.1 is the default. Most clients need no API key. Optional static keys remain available at [rove-ski.com/en/ai](https://rove-ski.com/en/ai) for headless or non-OAuth environments.
+
 ### Claude.ai (Web & Mobile)
 
-Preferred: install from the official listing [ROVE Snow Forecast in the Claude Connectors Directory](https://claude.ai/directory/rove-snow-forecast).
+Preferred: install from the official listing [ROVE Snow Forecast in the Claude Connectors Directory](https://claude.ai/directory/rove-snow-forecast) and click **Connect**.
 
-Fallback: in Claude Settings, open **Connectors**, click **Add custom connector**, and enter `https://rove-ski.com/mcp` to connect via OAuth.
+Fallback: in Claude, open **Customize → Connectors → Add custom connector**, and enter `https://rove-ski.com/mcp` (OAuth handles sign-in).
 
 ### Claude Desktop
 
-Merge `examples/claude_desktop_config.json` into your Claude Desktop MCP config (or use the `mcp-remote` variant in `examples/claude_desktop_config.alt.json`). Replace `YOUR_ROVE_API_KEY`.
+Prefer the Directory listing or a custom connector URL `https://rove-ski.com/mcp`. For config-file installs that still require a key, merge `examples/claude_desktop_config.json` (or the `mcp-remote` variant in `examples/claude_desktop_config.alt.json`) and replace `YOUR_ROVE_API_KEY`.
 
 ### Claude Code
+
+```bash
+claude mcp add --transport http rove https://rove-ski.com/mcp -s user
+```
+
+Start `claude` and run `/mcp` once to finish browser OAuth. Headless fallback:
 
 ```bash
 claude mcp add --transport http rove https://rove-ski.com/mcp \
   --header "Authorization: Bearer YOUR_ROVE_API_KEY" -s user
 ```
 
-### ChatGPT Desktop / Codex CLI
+### Codex CLI / App / IDE
+
+```bash
+codex mcp add rove --url https://rove-ski.com/mcp
+```
+
+Run `codex mcp login rove` if prompted. If OAuth is disabled in your Codex config:
 
 ```bash
 codex mcp add rove --url "https://rove-ski.com/mcp?key=YOUR_ROVE_API_KEY"
@@ -59,35 +73,40 @@ codex mcp add rove --url "https://rove-ski.com/mcp?key=YOUR_ROVE_API_KEY"
 
 See also `examples/codex_config.toml`.
 
+### VS Code / Copilot
+
+```bash
+code --add-mcp '{"name":"rove","type":"http","url":"https://rove-ski.com/mcp"}'
+```
+
 ### Gemini CLI
 
 ```bash
-gemini mcp add -s user --transport http rove \
-  "https://rove-ski.com/mcp?key=YOUR_ROVE_API_KEY"
+gemini mcp add -s user --transport http rove https://rove-ski.com/mcp
 ```
 
-See also `examples/gemini_settings.json`.
+Key fallback: append `?key=YOUR_ROVE_API_KEY` to the URL. See also `examples/gemini_settings.json`.
 
 ### Cursor
 
-Merge `examples/cursor_mcp.json` into `~/.cursor/mcp.json` (keep your other servers):
+One-click install from [rove-ski.com/en/ai](https://rove-ski.com/en/ai#manual), or merge into `~/.cursor/mcp.json` (keep your other servers):
 
 ```json
 {
   "mcpServers": {
     "rove": {
-      "url": "https://rove-ski.com/mcp?key=YOUR_ROVE_API_KEY"
+      "url": "https://rove-ski.com/mcp"
     }
   }
 }
 ```
 
+Cursor runs OAuth 2.1 + dynamic client registration on connect. Key fallback: use `https://rove-ski.com/mcp?key=YOUR_ROVE_API_KEY` instead.
+
 ### Grok / any Streamable HTTP MCP client
 
-Point your MCP client at:
-
-- URL: `https://rove-ski.com/mcp?key=YOUR_ROVE_API_KEY`
-- or URL `https://rove-ski.com/mcp` with header `Authorization: Bearer YOUR_ROVE_API_KEY`
+- Preferred: URL `https://rove-ski.com/mcp` with OAuth 2.1 when the client supports it
+- Fallback: URL `https://rove-ski.com/mcp?key=YOUR_ROVE_API_KEY`, or header `Authorization: Bearer YOUR_ROVE_API_KEY`
 
 ## Try it
 
