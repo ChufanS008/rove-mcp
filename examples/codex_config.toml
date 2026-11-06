@@ -1,0 +1,5 @@
+# Codex CLI / Codex app / IDE extension share one MCP config.
+# Equivalent CLI: codex mcp add rove --url "https://rove-ski.com/mcp?key=YOUR_ROVE_API_KEY"
+
+[mcp_servers.rove]
+url = "https://rove-ski.com/mcp?key=YOUR_ROVE_API_KEY"

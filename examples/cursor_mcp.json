@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "rove": {
+      "url": "https://rove-ski.com/mcp?key=YOUR_ROVE_API_KEY"
+    }
+  }
+}

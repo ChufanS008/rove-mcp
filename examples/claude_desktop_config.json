@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "rove": {
+      "transport": {
+        "type": "http",
+        "url": "https://rove-ski.com/mcp"
+      },
+      "headers": {
+        "Authorization": "Bearer YOUR_ROVE_API_KEY"
+      }
+    }
+  }
+}
