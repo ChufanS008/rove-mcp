@@ -2,25 +2,17 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.rove-ski/snow-forecast",
   "title": "ROVE Snow Forecast",
-  "description": "Free 15-day snow forecasts and conditions for 667 ski resorts in North America and Japan.",
+  "description": "Free, keyless snow forecasts for 667 ski resorts. Twelve read-only tools; optional OAuth 2.1.",
+  "version": "1.0.2",
   "websiteUrl": "https://rove-ski.com/en/ai",
-  "version": "1.0.1",
-  "repository": {
-    "url": "https://github.com/ChufanS008/rove-mcp",
-    "source": "github"
-  },
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://rove-ski.com/mcp",
-      "headers": [
-        {
-          "name": "Authorization",
-          "description": "Bearer API key from https://rove-ski.com/en/ai",
-          "isRequired": true,
-          "isSecret": true
-        }
-      ]
+      "url": "https://rove-ski.com/mcp"
     }
-  ]
+  ],
+  "repository": {
+    "url": "https://github.com/ChufanS008/rove-mcp",
+    "source": "github"
+  }
 }
